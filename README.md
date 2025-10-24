@@ -1,69 +1,92 @@
-# 🧠 AI-Powered RAG Chatbot for Website Knowledge Base
+# 🧠 AI-Powered RAG Chatbot with Web Scraping & Knowledge Base
 
-A domain-specific AI chatbot that answers questions about a website using **Retrieval-Augmented Generation (RAG)**, **FAISS**, and **Ollama's Mistral LLM**. It scrapes website content, stores it in a vector database, and provides context-aware responses via a **Streamlit** UI.
+A sophisticated **Retrieval-Augmented Generation (RAG)** chatbot that combines web scraping capabilities with pre-populated knowledge base content. Built with **FastAPI**, **Ollama**, and **FAISS**, this system provides intelligent, context-aware responses by leveraging both dynamically scraped web content and static JSON knowledge sources.
 
-> 📌 **Key Use Case**: Build a private chatbot that deeply understands your website and provides reliable, context-aware responses.
+> 📌 **Key Use Case**: Create a comprehensive AI assistant that understands both your website content and existing knowledge base, providing accurate, sourced answers while maintaining conversation history.
 
 ---
 
 ## 🚀 Features
-- 🔍 Web scraping with `requests` and `BeautifulSoup`
-- 📚 Text chunking and FAISS vector storage
-- 💬 Mistral LLM for natural language responses
-- 🧩 RAG architecture for accurate answers
-- 🧪 Interactive Streamlit interface
-- 🔒 Persistent chat history and scraped URLs
 
-## 📸 Demo
-
-
-![Streamlit UI](screenshots/Demo1.png)
+- **🌐 Web Scraping**: Automatically extract and process content from any website
+- **📚 Dual Knowledge Sources**: Combine scraped web data with pre-populated JSON context
+- **🔍 Smart Retrieval**: FAISS vector search for relevant content matching
+- **💬 Conversational AI**: Ollama-powered LLM with session-based chat history
+- **🔄 Persistent Storage**: Maintain scraped URLs, FAISS index, and chat sessions
+- **🎯 Context-Aware**: Uses both conversation history and retrieved content
+- **⚡ FastAPI Backend**: High-performance REST API with CORS support
+- **🔒 Session Management**: Isolated chat histories for different users/sessions
 
 ---
 
-## ⚙️ Tech Stack
-| Component | Tech Used |
-|-----------|-----------|
-| Frontend | Streamlit |
-| LLM | Mistral via Ollama |
-| Embeddings | HuggingFace |
-| Vector DB | FAISS |
-| Web Scraping | `requests`, `BeautifulSoup` |
+## 🏗️ System Architecture
+
+```
+User Query 
+    ↓
+FastAPI Endpoint (/ask)
+    ↓
+FAISS Vector Search → JSON Context Fallback
+    ↓
+Context + Conversation History
+    ↓
+Ollama LLM (phi3:mini)
+    ↓
+Response with Sources
+```
 
 ---
 
-## 📈 How It Works
-1. Scrape website content from a provided URL.
-2. Chunk and embed text into FAISS for fast retrieval.
-3. Answer user questions using RAG (retrieve relevant chunks, generate responses with Mistral).
-4. Display results in a Streamlit UI with chat history.
+## 📦 Tech Stack
 
-**Example**:
-Let’s say you want to create a chatbot for your company’s product documentation site. You run this app with your URL:
-
-```
-
-[https://your-website.com/docs/](https://your-website.com/docs/)
-
-````
-
-Then your customers can ask questions like:
-
-- "How do I reset my password?"
-- "What are the system requirements for installation?"
-
-The chatbot searches your site content and provides accurate, AI-generated answers — all while keeping data private.
+| Component | Technology |
+|-----------|------------|
+| **Backend Framework** | FastAPI |
+| **LLM** | Ollama with Phi-3 model |
+| **Embeddings** | HuggingFace Sentence Transformers |
+| **Vector Database** | FAISS |
+| **Web Scraping** | Requests + BeautifulSoup |
+| **Text Processing** | LangChain |
+| **Data Persistence** | JSON files |
 
 ---
 
-## 📂 Project Structure
+## 🗂️ Project Structure
+
 ```
-📁 ai_web_scraper_chatbot/
-├── ai_web_scraper_faiss.py  # Main logic (scraping, embedding, chat flow)
-├── requirements.txt         # Python dependencies
-├── README.md                # Project documentation
-├── LICENSE                  # Proprietary license
+📁 rag-chatbot/
+├── app.py                          # FastAPI application
+├── data/
+│   └── context_data.json            # Pre-populated knowledge base
+├── faiss_index/                     # Vector store (auto-generated)
+├── scraped_urls.json               # Tracked URLs (auto-generated)
+├── chat_history.json               # Session histories (auto-generated)
+└── requirements.txt                # Dependencies
 ```
+
+---
+
+## ⚙️ Core Components
+
+### 1. **Dual Knowledge Sources**
+- **Web Content**: Dynamically scraped from URLs
+- **JSON Context**: Pre-loaded from `context_data.json`
+- **Smart Merging**: FAISS combines both sources seamlessly
+
+### 2. **Intelligent Retrieval**
+- Semantic search using FAISS vector similarity
+- Fallback to direct JSON lookup when needed
+- Source tracking for response attribution
+
+### 3. **Conversation Management**
+- UUID-based session tracking
+- Persistent chat history
+- Context-aware prompting with history
+
+### 4. **Content Processing**
+- Automatic text chunking (500 chars with 100 overlap)
+- HTML cleaning and normalization
+- Duplicate prevention
 
 ---
 
@@ -71,8 +94,8 @@ The chatbot searches your site content and provides accurate, AI-generated answe
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Adamderbel/rag-chatbot.git
-cd ai_web_scraper_chatbot
+git clone https://github.com/Adamderbel/AI-Powered-RAG-Chatbot.git
+cd AI-Powered-RAG-Chatbot
 ```
 
 ### 2. Install Dependencies
@@ -88,38 +111,92 @@ pip install -r requirements.txt
    ```bash
    ollama serve
    ```
-3. Pull and run the Mistral model (or any Ollama-supported model):
+3. Pull and run the phi3:mini model (or any Ollama-supported model):
    ```bash
-   ollama pull mistral
-   ollama run mistral
+   ollama pull phi3:mini
+   ollama run phi3:mini
    ```
 
 ### 4. Run the App
 ```bash
-streamlit run ai_web_scraper_faiss.py
+python app.py
 ```
 
 ---
 
-## 💻 System Requirements
-- Python 3.8+
-- 4GB+ RAM (8GB recommended for FAISS and Ollama)
-- Ollama server (Linux, macOS, or Windows)
-- Internet connection for scraping and model downloads
+## 📡 API Endpoints
 
-## 🧪 Testing
-1. Run the app and enter `https://example.com`.
-2. Ask "What is this website about?" and verify the response.
+### 🔍 **Scrape Website**
+```http
+POST /scrape
+Content-Type: application/json
 
-## 🛠️ Troubleshooting
-- **Ollama not running**: Start with `ollama serve`.
-- **FAISS error**: Delete `faiss_index` folder and re-scrape.
-- **Model not found**: Run `ollama pull mistral`.
-- **Memory issues**: Use `faiss-gpu` or limit scraped content for large websites.
+{
+  "url": "https://example.com"
+}
+```
 
-## ⚠️ Security Note
-FAISS uses `allow_dangerous_deserialization=True`. Only use trusted index files to avoid security risks.
+### 💬 **Ask Question**
+```http
+POST /ask
+Content-Type: application/json
+
+{
+  "question": "What services do you offer?",
+  "session_id": "optional-session-uuid"
+}
+```
+
+### 🗑️ **Reset System**
+```http
+POST /reset
+```
+
+### 📊 **Get Scraped URLs**
+```http
+GET /scraped-urls
+```
+
+### 💾 **Get Chat History**
+```http
+GET /chat-history/{session_id}
+```
+
+### 🩺 **Health Check**
+```http
+GET /health
+```
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues:
+
+1. **Ollama Connection Failed**
+   ```bash
+   # Ensure Ollama is running
+   ollama serve
+   ```
+
+2. **FAISS Loading Errors**
+   ```bash
+   # Reset the vector store
+   curl -X POST http://localhost:8000/reset
+   ```
+
+3. **Memory Issues**
+   - Reduce chunk size in `CharacterTextSplitter`
+   - Limit number of scraped URLs
+   - Use smaller embedding model
+
+4. **Scraping Failures**
+   - Check URL accessibility
+   - Verify network connectivity
+   - Review website robots.txt
 
 ---
+
+
+
 
 
