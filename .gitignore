@@ -2,3 +2,4 @@ data
 faiss_index
 Chat_history.json
 __pycache__
+venv

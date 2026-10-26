@@ -1,0 +1,66 @@
+{
+  "project_info": "AI Market Pulse Dashboard is a comprehensive analytics platform that provides real-time market insights and AI-powered analysis. The project was initiated in 2025 to help businesses make data-driven decisions.",
+  "core_features": [
+    "Interactive market trend visualizations",
+    "Real-time data processing and analysis",
+    "AI-powered predictive analytics",
+    "Customizable dashboard layouts",
+    "Multi-source data integration",
+    "Automated report generation"
+  ],
+  "tech_stack": {
+    "backend": "Python (FastAPI/Flask)",
+    "frontend": "React.js with TypeScript",
+    "database": "PostgreSQL with TimescaleDB",
+    "data_processing": "Pandas, NumPy",
+    "visualization": "Plotly, D3.js",
+    "deployment": "Docker, Kubernetes"
+  },
+  "project_structure": {
+    "src/market_dashboard/": "Main application package",
+    "components/": "Reusable UI components"
+  },
+  "welcome_message": "Welcome to AI Market Pulse Dashboard - Your intelligent market analysis assistant!",
+  "about": {
+    "purpose": "AI Market Pulse Dashboard helps you track and analyze financial markets with AI-powered insights and real-time data visualization.",
+    "key_features": [
+      "Real-time market data for stocks and cryptocurrencies",
+      "AI-generated market insights and predictions",
+      "Interactive charts and technical indicators",
+      "Personalized watchlists and alerts",
+      "Comparative analysis of multiple assets"
+    ]
+  },
+  "available_markets": {
+    "stocks": ["NYSE", "NASDAQ", "FTSE", "NIKKEI"],
+    "cryptocurrencies": ["Bitcoin", "Ethereum", "Top 100 by market cap"],
+    "forex": ["Major currency pairs", "Commodity currencies"]
+  },
+  "how_to_use": [
+    "1. **Explore Markets**: Browse different market sections using the navigation menu",
+    "2. **Search Assets**: Use the search bar to find specific stocks or cryptocurrencies",
+    "3. **View Analysis**: Click on any asset to see detailed analysis and charts",
+    "4. **Get Insights**: Check the AI-powered insights section for market predictions",
+    "5. **Customize**: Create watchlists and set up alerts for price movements"
+  ],
+  "faq": {
+    "What data sources do you use?": "We use multiple reliable financial data providers and real-time APIs to ensure accurate market data.",
+    "How often is the data updated?": "Market data is updated in real-time during market hours with 15-minute delayed data for free accounts.",
+    "Are there any subscription plans?": "We offer both free and premium plans. Premium features include real-time data, advanced analytics, and more.",
+    "How accurate are the AI predictions?": "Our AI models are trained on historical data and have shown an average accuracy of 75-85% in backtesting. However, past performance is not indicative of future results.",
+    "Can I track my portfolio?": "Yes, you can create and track multiple portfolios with our portfolio management tools."
+  },
+  "getting_help": {
+    "documentation": "Visit our [Help Center](https://docs.aimarketpulse.com)",
+    "support": "Email us at support@aimarketpulse.com",
+    "community": "Join our [Discord community](https://discord.gg/aimarketpulse)",
+    "feedback": "We'd love to hear your feedback! Use the feedback button in the app."
+  },
+  "quick_actions": [
+    "Show me the top gainers today",
+    "Analyze AAPL stock",
+    "Compare BTC and ETH performance",
+    "Show me the latest market news",
+    "Create a new watchlist"
+  ]
+}

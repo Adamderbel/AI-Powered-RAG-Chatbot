@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knowledge Base · Chat Demo</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/chat.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand"><span class="logo" aria-hidden="true">K</span><div><h1>Knowledge Base</h1><p>Your project, in conversation</p></div></div>
+      <button id="new-chat" class="secondary" type="button">＋ New chat</button>
+    </header>
+    <section id="messages" role="log" aria-label="Chat messages" aria-live="polite" aria-relevant="additions text">
+      <div id="welcome" class="welcome">
+        <span class="eyebrow">JSON CONTEXT · LOCAL AI</span>
+        <h2>What would you like to know?</h2>
+        <p>Ask about the project. Answers use the information in your knowledge base.</p>
+        <div class="suggestions">
+          <button type="button" data-question="What is this project about?">What is this project about? <span aria-hidden="true">↗</span></button>
+          <button type="button" data-question="What are the core features?">What are the core features? <span aria-hidden="true">↗</span></button>
+          <button type="button" data-question="What technology does the project use?">What technology does it use? <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p id="status" role="status">Ready when you are.</p>
+      <form id="chat-form">
+        <label class="sr-only" for="question">Your message</label>
+        <textarea id="question" rows="2" placeholder="Ask a question about your project…" required></textarea>
+        <button id="send" type="submit">Send <span aria-hidden="true">↑</span></button>
+      </form>
+      <p class="hint">Enter to send · Shift + Enter for a new line <span>Powered by Ollama & FAISS</span></p>
+    </footer>
+  </main>
+</body>
+</html>
